@@ -1,0 +1,34 @@
+def identify_hash(hash_value):
+    # Clean input hash value (strip spaces, etc.)
+    hash_value = hash_value.strip().lower()
+
+    # Regular expressions for detecting specific hash patterns
+    hash_patterns = {
+        'MD5': r'^[a-f0-9]{32}$',            # MD5: 32 hexadecimal characters
+        'SHA1': r'^[a-f0-9]{40}$',           # SHA1: 40 hexadecimal characters
+        'SHA224': r'^[a-f0-9]{56}$',         # SHA224: 56 hexadecimal characters
+        'SHA256': r'^[a-f0-9]{64}$',         # SHA256: 64 hexadecimal characters
+        'SHA384': r'^[a-f0-9]{96}$',         # SHA384: 96 hexadecimal characters
+        'SHA512': r'^[a-f0-9]{128}$',        # SHA512: 128 hexadecimal characters
+        'SHA3-224': r'^[a-f0-9]{56}$',       # SHA3-224: 56 hexadecimal characters
+        'SHA3-256': r'^[a-f0-9]{64}$',       # SHA3-256: 64 hexadecimal characters
+        'SHA3-384': r'^[a-f0-9]{96}$',       # SHA3-384: 96 hexadecimal characters
+        'SHA3-512': r'^[a-f0-9]{128}$',      # SHA3-512: 128 hexadecimal characters
+        'BLAKE2b': r'^[a-f0-9]{128}$',       # BLAKE2b: 128 hexadecimal characters
+        'BLAKE2s': r'^[a-f0-9]{64}$',        # BLAKE2s: 64 hexadecimal characters
+        'CRC32': r'^[a-f0-9]{8}$',           # CRC32: 8 hexadecimal characters
+        'FNV-1': r'^[a-f0-9]{8}$',           # FNV-1: 8 hexadecimal characters
+        'MurmurHash': r'^[a-f0-9]{8}$',      # MurmurHash: 8 hexadecimal characters
+        'CityHash': r'^[a-f0-9]{16}$',       # CityHash: 16 hexadecimal characters
+        'djb2': r'^[a-f0-9]{8}$',            # djb2: 8 hexadecimal characters
+        'Adler-32': r'^[a-f0-9]{8}$',        # Adler-32: 8 hexadecimal characters
+        'XOR': r'^[a-f0-9]{8}$',             # XOR hash: 8 hexadecimal characters
+        'SimHash': r'^[a-f0-9]{16}$',        # SimHash: 16 hexadecimal characters
+        'MinHash': r'^[a-f0-9]{16}$',        # MinHash: 16 hexadecimal characters
+        'HMAC': r'^[a-f0-9]{32,128}$',       # HMAC: variable, often between 32-128 hex characters
+    }
+
+    # Iterate through the patterns to find a match
+    for hash_type, pattern in hash_patterns.items():
+        if re.match(pattern, hash_value):
+            return hash_type
